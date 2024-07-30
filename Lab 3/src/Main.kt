@@ -1,19 +1,19 @@
-// Clase base Food con propiedades name y price y una función abstracta cook()
+// Clase principal Food y una función abstracta cook()
 abstract class Food(val name: String, val price: Double) {
     abstract fun cook(): String
 }
 
-// Subclase de Food para hamburguesas
+// Subclase de Food, Burger
 class Burger(name: String, price: Double) : Food(name, price) {
     override fun cook(): String {
-        return "Asando la hamburguesa $name"
+        return "Asar a termino medio la hamburguesa: $name"
     }
 }
 
-// Subclase de Food para pizzas
+// Subclase de Food, Pizza
 class Pizza(name: String, price: Double) : Food(name, price) {
     override fun cook(): String {
-        return "Horneando la pizza $name"
+        return "Bien horneada la pizza: $name"
     }
 }
 
@@ -22,14 +22,14 @@ interface Dessert {
     fun eat(): String
 }
 
-// Clase IceCream que es una subclase de Food e implementa Dessert
+// Subclase de Food, IceCream e implementa Dessert
 class IceCream(name: String, price: Double) : Food(name, price), Dessert {
     override fun cook(): String {
-        return "Enfriando el helado $name"
+        return "Enfriando el helado: $name en la nevera"
     }
 
     override fun eat(): String {
-        return "Comiendo el helado $name"
+        return "Comer frio el helado $name"
     }
 }
 
@@ -38,14 +38,14 @@ abstract class Drink(name: String, price: Double) : Food(name, price) {
     abstract fun pour(): String
 }
 
-// Subclase de Drink llamada Juice
+// Subclase de Drink, Juice
 class Juice(name: String, price: Double) : Drink(name, price) {
     override fun cook(): String {
-        return "Exprimiendo el jugo $name"
+        return "Exprimir el jugo $name con las manos"
     }
 
     override fun pour(): String {
-        return "Sirviendo el jugo $name"
+        return "Servir con cuidado el jugo $name"
     }
 }
 
@@ -56,18 +56,17 @@ fun Food.discountedPrice(discountPercentage: Double): Double {
 
 // Función main para probar el sistema
 fun main() {
-    val burger = Burger("Cheeseburger", 5.99)
+    val burger = Burger("Tejana", 5.99)
     val pizza = Pizza("Pepperoni", 8.99)
-    val iceCream = IceCream("Vanilla", 3.49)
-    val juice = Juice("Orange", 2.99)
+    val iceCream = IceCream("Chocolate", 3.99)
+    val juice = Juice("Limonada", 2.99)
 
     println(burger.cook())
     println(pizza.cook())
     println(iceCream.cook())
     println(juice.cook())
     println(juice.pour())
-
     println(iceCream.eat())
 
-    println("Precio con descuento de la hamburguesa: \$${burger.discountedPrice(10.0)}")
+    println("Precio con descuento de la hamburguesa: \$${burger.discountedPrice(50.0)}")
 }
